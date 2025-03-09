@@ -1,1 +1,13 @@
+remote_theme: pages-themes/hacker@v0.2.0
+plugins:
+- jekyll-remote-theme
+
+title: [Recipe Deep-Dive: Analyzing and Predicting Calorie Counts]
+description: [This project analyzes a dataset of recipes and seeks to
+              understand how different recipe factors affect the calorie
+              count of the recipe. Through this project, the data is cleaned
+              and explored. Then, factors of missingness and assessed,
+              hypothesis testing is performed, and finally, machine learning
+              models that predict calorie counts for recipes are built and 
+              improved upon.]
 
