@@ -3,9 +3,13 @@
 
 ## Introduction
 
-This project is the final project for the cmyse DSC 80 at the University of California, San Diego. This project analyzes a dataset of recipes which Ire scraped from food.com. This project seeks to first understand and ansIr the question: what types of recipes tend to be healthier and what nutritional values correlate with healthier foods? For example, do healthy foods have more protein than unhealthy foods? Do they have less carbohydrates than unhealthy foods? Then, this project will use models to predict the number of calories in recipes.
+This project is the final project for the course DSC 80 at the University of California, San Diego. This project analyzes a dataset of recipes which
+were scraped from food.com. This project seeks to first understand and answer the question: what types of recipes tend to be healthier and what nutritional
+values correlate with healthier foods? For example, do healthy foods have more protein than unhealthy foods? Do they have less carbohydrates than unhealthy
+foods? Then, this project will use models to predict the number of calories in recipes.
 
-To begin, I had two datasets: recipes and ratings. The Recipes dataset contained information about recipes. These recipes Ire uploaded by users on food.com. The Ratings dataset contains information on ratings that users left for a specific recipe.
+To begin, I had two datasets: recipes and ratings. The Recipes dataset contained information about recipes. These recipes were uploaded by users on food.com.
+The Ratings dataset contains information on ratings that users left for a specific recipe.
 
 ***Recipes Schema***
 
@@ -46,13 +50,13 @@ average rating that I calculate for each recipe. Next, I want to calculate the a
 rating and calculating the mean for each group. Then, I want to merge this column with the main dataset. 
 
 The next cleaning I want to do is converting the nutrition column from a list of values to individual values. The nutrition value for each row in a recipe contains
-information about the nutritional value of that meal. This information is represented in the shape of a list, hoIver it is actually stored as a string. So, I first 
+information about the nutritional value of that meal. This information is represented in the shape of a list, however it is actually stored as a string. So, I first 
 convert each nutrition string in the column into a list. Then, I can put each value in the list into its own column, and convert that into a dataframe. 
 
 The third cleaning step involves filtering out outliers. This dataset contains some significant outliers that skew the data and significantly impact visualizations. For ease,
 I want to exclude these values from my data analysis. Logically, this makes sense, because a recipe with 45,000 calories is outside of regular consumption. The daily caloric
 recommendation is 2000 calories, so I think it is valid to exclude these outliers for the sake of better visualizations and analyses. To filter out outliers, I defined a
-method, "filter_outliers", which returns only those values within my loIr and upper bounds. I then pass through every column in the nutrition dataframe, to remove outliers
+method, "filter_outliers", which returns only those values within my lower and upper bounds. I then pass through every column in the nutrition dataframe, to remove outliers
 for each column. Once I've filtered out the data to exclude outliers, I want to get the indices of the remaining data, and filter out my main dataset to get only the
 non-outlier rows. Then, I can merge this filtered dataframe with the nutrition dataframe.
 
@@ -62,10 +66,10 @@ After all of my data cleaning, my dataset will look like the table below:
 
 | name | id | minutes | contributor_id | submitted | tags | n_steps | steps | description | ingredients | n_ingredients | user_id | recipe_id | date | rating | review | avg_rating | calories | total fat | sugar | sodium | protein | saturated fat | carbohydrates | healthy |
 |:-----|:---|:--------|:--------------|:----------|:-----|:--------|:------|:------------|:------------|:--------------|:--------|:----------|:-----|:-------|:-------|:-----------|:---------|:----------|:------|:-------|:--------|:--------------|:--------------|:---------|
-| 1 brownies in the world best ever | 333281 | 40 | 985201 | 2008-10-27 | ['60-minutes-or-less', 'time-to-make', ...] | 10 | ['heat the oven to 350f and arrange the rack in the middle', ...] | these are the most; chocolatey, moist, rich, dense, fudgy, ... | ['bittersIet chocolate', 'unsalted butter', ...] | 9 | 386585 | 333281 | 2008-11-19 | 4 | These Ire pretty good, but took forever to bake. I would... | 4 | 138.4 | 10 | 50 | 3 | 3 | 19 | 6 | False |
+| 1 brownies in the world best ever | 333281 | 40 | 985201 | 2008-10-27 | ['60-minutes-or-less', 'time-to-make', ...] | 10 | ['heat the oven to 350f and arrange the rack in the middle', ...] | these are the most; chocolatey, moist, rich, dense, fudgy, ... | ['bittersweet chocolate', 'unsalted butter', ...] | 9 | 386585 | 333281 | 2008-11-19 | 4 | These were pretty good, but took forever to bake. I would... | 4 | 138.4 | 10 | 50 | 3 | 3 | 19 | 6 | False |
 | 1 in canada chocolate chip cookies | 453467 | 45 | 1848091 | 2011-04-11 | ['60-minutes-or-less', 'time-to-make', ...] | 12 | ['pre-heat oven the 350 degrees f', ...] | this is the recipe that I use at my school cafeteria for... | ['white sugar', 'brown sugar', 'salt', ...] | 11 | 424680 | 453467 | 2012-01-26 | 5 | Originally I was gonna cut the recipe in half (just the 2 of us... | 5 | 595.1 | 46 | 211 | 22 | 13 | 51 | 26 | False |
 | 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | ['60-minutes-or-less', 'time-to-make', ...] | 6 | ['preheat oven to 350 degrees', ...] | since there are already 411 recipes for broccoli casserole... | ['frozen broccoli cuts', 'cream of chicken soup', ...] | 9 | 29782 | 306168 | 2008-12-31 | 5 | This was one of the best broccoli casseroles that I have ever... | 5 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 | False |
-| 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | ['60-minutes-or-less', 'time-to-make', ...] | 6 | ['preheat oven to 350 degrees', ...] | since there are already 411 recipes for broccoli casserole... | ['frozen broccoli cuts', 'cream of chicken soup', ...] | 9 | 1.19628e+06 | 306168 | 2009-04-13 | 5 | I made this for my son's first birthday party this Iekend... | 5 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 | False |
+| 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | ['60-minutes-or-less', 'time-to-make', ...] | 6 | ['preheat oven to 350 degrees', ...] | since there are already 411 recipes for broccoli casserole... | ['frozen broccoli cuts', 'cream of chicken soup', ...] | 9 | 1.19628e+06 | 306168 | 2009-04-13 | 5 | I made this for my son's first birthday party this weekend... | 5 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 | False |
 | 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | ['60-minutes-or-less', 'time-to-make', ...] | 6 | ['preheat oven to 350 degrees', ...] | since there are already 411 recipes for broccoli casserole... | ['frozen broccoli cuts', 'cream of chicken soup', ...] | 9 | 768828 | 306168 | 2013-08-02 | 5 | Loved this. Be sure to completely thaw the broccoli. I didn't... | 5 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 | False |
 
 ### Univariate Analysis
@@ -97,7 +101,7 @@ unhealthy.
   frameborder="0"
   ></iframe>
 This boxplot shows the distribution of calories out of all recipes in the dataset based on the recipe category (healthy or unhealthy). By comparing the median values,
-I can see that this plot shows that healthy recipes are loIr in calories than unhealthy recipes.
+I can see that this plot shows that healthy recipes are lower in calories than unhealthy recipes.
 
 <iframe
   src="assets/bivar2.html"
@@ -109,11 +113,21 @@ This scatterplot shows us the relationship betIen calories and total fat. The pl
 are high in fats are also high in calories and vice versa.
 
 ### Interesting Aggregates
+By grouping columns by the healthy column, I created this pivot table, which stores the mean value for each nutrition column based on the recipe
+category (healthy or unhealthy). This pivot table more easily displays the differences in nutrition values for healthy and unhealthy foods.
 
+| healthy   |   calories |   carbohydrates |   protein |   saturated fat |   sodium |   sugar |   total fat |
+|:----------|-----------:|----------------:|----------:|----------------:|---------:|--------:|------------:|
+| False     |    351.232 |         9.15961 |   32.0619 |         36.4012 |  22.4048 | 37.0908 |     28.7803 |
+| True      |    257.48  |        11.7311  |   21.998  |         10.0385 |  17.3241 | 43.7574 |     10.9076 |
+
+It shows that healthy foods are, on average, lower in calories, higher in carbs, lower in protein, lower in saturate fat, lower in sodium, higher in sugar, and
+lower in total fat. The difference between total and saturate fat in healthy and unhealthy foods is stark, likely indicating that fat content has a high impact
+on calories and whether or not the recipe is healthy.
 
 ## Assessment Of Missingness
 
-my data contains the following number of missing values:
+***Missing Values***
 |                |       |
 |:---------------|------:|
 | name           |     1 |
@@ -144,13 +158,13 @@ my data contains the following number of missing values:
 | missing_rating |     0 |
 
 ### NMAR Analysis
-The "rating" column has the most missing values, at 15036. I believe that the "rating" column is NMAR (Not Missing At Random). This could be attributed to the fact that
+The "rating" column has the most missing values, at 15036. I believe that the "rating" column is NMAR (Not Missing At Random). This can be attributed to the fact that
 people will usually only give recipes if they feel strongly about a recipe. They either really loved it and want to give it 5 stars, or they really hated it and want to
-give it 1 star. A majority of the people who look up recipes on food.com likely just want to find something to cook. They likely won't come back after eating to give their
-review of the recipe. I've done this many times, and I'm sure this is a common trend.
+give it 1 star. A majority of the people who look up recipes on food.com likely just want to find something to cook. They probably won't come back after eating to give
+their review of the recipe. I've done this many times, and I'm sure this is a common trend.
 
 ### Missingness Dependency
-I will use permutation tests to analyze if the missingness of the "rating" column is dependent on "avg_rating" and "calories".
+I will use permutation tests to analyze if the missingness of the "rating" column is dependent on "avg_rating" and "minutes".
 
 For testing the relationship betIen "rating" and "avg_rating":
 
@@ -158,35 +172,42 @@ Null Hypothesis: The missingness of the "rating" column is not dependent on the 
 
 Alternative Hypothesis: The missingness of the "rating" column is dependent on the "avg_rating" column.
 
-Results:
-I found a p value of kldsfjlka;sdfjlkds. This means that I will aslkdfskdlfask reject the null hypothesis. This shows that the missingness of "rating" is/is not
-dependent on 
-
-Null Hypothesis: The missingness of the "rating" column is not dependent on the "calories" column.
-
-Alternative Hypothesis: The missingness of the "rating" column is dependent on the "calories" column.
+Test Statistic: Difference in means
 
 Results:
-I found a p value of dsfkjsadflkjasdfkl. This means that I will lasdjkfajsfdkl reject the null hypothesis.
+After running the permutation test, I got a p value of 0.0. Since this is below our significance level of 0.05, I will reject the null hypothesis.
+This shows that the missingness of "rating" is dependent on the "avg_rating" column.
+
+Second Permutation Test:
+
+Null Hypothesis: The missingness of the "rating" column is not dependent on the "minutes" column.
+
+Alternative Hypothesis: The missingness of the "rating" column is dependent on the "minutes" column.
+
+Test Statistic: Difference in means
+
+Results:
+After running the permutation test, I found a p value of 0.11. Since this p value is above our significance level of 0.05, I will fail to reject the null hypothesis.
+This shows that the missingness of "rating" is not dependent on the "minutes" column.
 
 ## Hypothesis Testing
-I want to run a hypothesis test to ansIr the following question: Do healthy recipes have a loIr average calorie count than unhealthy recipes? So, I ran a 
-permutation test to ansIr the question.
+I want to run a hypothesis test to answer the following question: Do healthy recipes have a lower average calorie count than unhealthy recipes? So, I ran a 
+permutation test to answer the question.
 
-Null Hypothesis: There is no difference in the mean calorie count betIen healthy and unhealthy recipes.
+Null Hypothesis: There is no difference in the mean calorie count between healthy and unhealthy recipes.
 
-Alternative Hypothesis: Healthy recipes have a loIr average calorie count than unhealthy recipes.
+Alternative Hypothesis: Healthy recipes have a lower average calorie count than unhealthy recipes.
 
 Test Statistic: Difference in Means
 
 Results:
 
-my resulting p value was 0.0, which means that I can reject the null hypothesis that there is no difference in the mean calorie count betIen healthy and unhealthy
-recipes.
+My resulting p value was 0.0, which means that I can reject the null hypothesis that there is no difference in the mean calorie count between healthy and unhealthy
+recipes. There is statistical significance to show that healthy and unhealthy recipes have different mean calorie counts.
 
 ## Framing A Prediction Problem
-The hypothesis test in the previous section shoId us that there is a difference in the number of calories in a recipe depending on whether it is healthy or not.
-So in the following sections, I want to be able to ansIr the following prediction problem: Can I predict the number of calories in a recipe based on other
+The hypothesis test in the previous section showed us that there is a difference in the number of calories in a recipe depending on whether it is healthy or not.
+So in the following sections, I want to be able to answer the following prediction problem: Can I predict the number of calories in a recipe based on other
 information (like total fat, carbohydrates, n_ingredients, healthy, etc.)?
 
 To start, I want to build a baseline model. I will begin by trying to predict how many calories a meal will have based on the amount of protein, carbohydrates,
@@ -207,11 +228,11 @@ fat. I thought that it would help the model to have the fat features because fat
 carb_to_sugar_ratio and sat_fat_ratio. The carb_to_sugar_ratio feature represents the ratio of carbohydrates to sugar. The sat_fat_ratio feature represents the ratio of
 saturated fats to total fats. These two engineered features are also numerical quantitative features. I thought that these features would improve the model because sugar
 is a type of carbohydrate, so it would be helpful to differentiate how much of a recipe's carbs are coming from sugar and because saturated fats are typically associated
-with more unhealthy, high-carbohydrate food, so it would be helpful for the model to differentiate how much of a recipe's total fat content is saturate fat. I use the 
+with more unhealthy, high-carbohydrate food, so it would be helpful for the model to differentiate how much of a recipe's total fat content is saturated fat. I use the 
 StandardScaler on all of these quantitative features to standardize them. Next, I use the OneHotEncoder on the healthy feature to convert the feature so that the model 
 can use the feature, since it is a categorical feature, so it has to be encoded. I thought it would be helpful for the model to be able to differentiate betIen if a recipe is
-healthy or not, because as I saw earlier in the project, healthy meals typically (based on median) have loIr calories than unhealthy meals. In the pipeline, I use the
-above features, and for the model, I use a RandomForestRegressor, which is good for finding non-linear relationships betIen features. This is useful because of all of
+healthy or not, because as I saw earlier in the project, healthy meals typically (based on median) have lowwer calories than unhealthy meals. In the pipeline, I use the
+above features, and for the model, I use a RandomForestRegressor, which is good for finding non-linear relationships between features. This is useful because of all of
 the features I am passing into this model, whose relationships may not be best represented through linear relationships. Finally, I used GridSearchCV to tune
 hyperparameters. I tuned the max_depth hyperparameter to have a max depth of 5 to give a preset limit to the tree depth. I tuned the n_estimators hyperparameter to 50 to ensure
 that the model didn't run very long. Finally, I ran GridSearchCV with 3 CV folds to test the model while still prioritizing runtime. After running the final model,
