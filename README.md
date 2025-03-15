@@ -12,6 +12,7 @@ To begin, I had two datasets: recipes and ratings. The Recipes dataset contained
 The Ratings dataset contains information on ratings that users left for a specific recipe.
 
 ***Recipes Schema***
+(731927 rows × 5 columns)
 
 | Column Name            | Description                          |
 |------------------------|-------------------------------------:|
@@ -29,6 +30,7 @@ The Ratings dataset contains information on ratings that users left for a specif
 | n_ingredients          | (int64) number of ingredients        |
 
 ***Ratings Schema***
+(83782 rows × 12 columns)
 
 | Column Name            | Description                            |
 |------------------------|---------------------------------------:|
@@ -64,6 +66,9 @@ The final cleaning step is to create a healthy column, which contains True or Fa
 
 After all of my data cleaning, my dataset will look like the table below:
 
+***Project Dataset Schema***
+(234429 rows × 25 columns)
+
 | name | id | minutes | contributor_id | submitted | tags | n_steps | steps | description | ingredients | n_ingredients | user_id | recipe_id | date | rating | review | avg_rating | calories | total fat | sugar | sodium | protein | saturated fat | carbohydrates | healthy |
 |:-----|:---|:--------|:--------------|:----------|:-----|:--------|:------|:------------|:------------|:--------------|:--------|:----------|:-----|:-------|:-------|:-----------|:---------|:----------|:------|:-------|:--------|:--------------|:--------------|:---------|
 | 1 brownies in the world best ever | 333281 | 40 | 985201 | 2008-10-27 | ['60-minutes-or-less', 'time-to-make', ...] | 10 | ['heat the oven to 350f and arrange the rack in the middle', ...] | these are the most; chocolatey, moist, rich, dense, fudgy, ... | ['bittersweet chocolate', 'unsalted butter', ...] | 9 | 386585 | 333281 | 2008-11-19 | 4 | These were pretty good, but took forever to bake. I would... | 4 | 138.4 | 10 | 50 | 3 | 3 | 19 | 6 | False |
@@ -71,6 +76,22 @@ After all of my data cleaning, my dataset will look like the table below:
 | 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | ['60-minutes-or-less', 'time-to-make', ...] | 6 | ['preheat oven to 350 degrees', ...] | since there are already 411 recipes for broccoli casserole... | ['frozen broccoli cuts', 'cream of chicken soup', ...] | 9 | 29782 | 306168 | 2008-12-31 | 5 | This was one of the best broccoli casseroles that I have ever... | 5 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 | False |
 | 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | ['60-minutes-or-less', 'time-to-make', ...] | 6 | ['preheat oven to 350 degrees', ...] | since there are already 411 recipes for broccoli casserole... | ['frozen broccoli cuts', 'cream of chicken soup', ...] | 9 | 1.19628e+06 | 306168 | 2009-04-13 | 5 | I made this for my son's first birthday party this weekend... | 5 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 | False |
 | 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | ['60-minutes-or-less', 'time-to-make', ...] | 6 | ['preheat oven to 350 degrees', ...] | since there are already 411 recipes for broccoli casserole... | ['frozen broccoli cuts', 'cream of chicken soup', ...] | 9 | 768828 | 306168 | 2013-08-02 | 5 | Loved this. Be sure to completely thaw the broccoli. I didn't... | 5 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 | False |
+
+The main columns I used in this project are: "minutes", "calories", "total fat", "sugar", "sodium", "protein", "saturated fat", "carbohydrates", and "healthy".
+The schema for those variables is:
+
+| minutes                | (int64) number of minutes to prepare |
+| calories               | (int64) number of calories in recipe |
+| total fat              | (int64) grams of total fat in recipe |
+| sugar                  | (int64) grams of sugar in recipe     |
+| sodium                 | (int64) grams of sodium in recipe    |
+| protein                | (int64) grams of protein in recipe   |
+| saturated fat          | (int64) grams of saturated fat in recipe |
+| carbohydrates          | (int64) grams of carbohydrates in recipe |
+| healthy               | (boolean) True if recipe is healthy, False if not |
+
+
+
 
 ### Univariate Analysis
 
@@ -80,6 +101,7 @@ After all of my data cleaning, my dataset will look like the table below:
   height="600"
   frameborder="0"
   ></iframe>
+  
 This histogram shows the distribution of calories in the entire recipe dataset. The plot shows that most of the recipes in my dataset are within 0-500 calories.
 Then, there is a sharp taper off, until I reach 1000 calories, at which point there are very little recipes that have over 1000 calories.
 
@@ -89,6 +111,7 @@ Then, there is a sharp taper off, until I reach 1000 calories, at which point th
   height="600"
   frameborder="0"
   ></iframe>
+  
 This histogram gives us the distribution of healthy and unhealthy recipes out of all the recipes in the dataset. The plot shows that a majority of the recipes are
 unhealthy.
 
@@ -100,6 +123,7 @@ unhealthy.
   height="600"
   frameborder="0"
   ></iframe>
+  
 This boxplot shows the distribution of calories out of all recipes in the dataset based on the recipe category (healthy or unhealthy). By comparing the median values,
 I can see that this plot shows that healthy recipes are lower in calories than unhealthy recipes.
 
@@ -109,6 +133,7 @@ I can see that this plot shows that healthy recipes are lower in calories than u
   height="600"
   frameborder="0"
   ></iframe>
+  
 This scatterplot shows us the relationship betIen calories and total fat. The plot shows that calories and total fat have a strong, positive correlation. So, meals that
 are high in fats are also high in calories and vice versa.
 
@@ -127,7 +152,6 @@ on calories and whether or not the recipe is healthy.
 
 ## Assessment Of Missingness
 
-***Missing Values***
 |                |       |
 |:---------------|------:|
 | name           |     1 |
@@ -219,7 +243,9 @@ Test Statistic: Difference in Means
 Results:
 
 My resulting p value was 0.0, which means that I can reject the null hypothesis that there is no difference in the mean calorie count between healthy and unhealthy
-recipes. There is statistical significance to show that healthy and unhealthy recipes have different mean calorie counts.
+recipes. There is statistical significance to show that healthy and unhealthy recipes have different mean calorie counts. This is relevant to the project question
+because I want to ensure that there is statistical significance to show that the variation in calorie count between healthy and unhealthy food is not due to 
+random chance. This implies (although it doesn't prove or otherwise say conclusively) that healthy foods are lower in calories.
 
 ## Framing A Prediction Problem
 The hypothesis test in the previous section showed us that there is a difference in the number of calories in a recipe depending on whether it is healthy or not.
