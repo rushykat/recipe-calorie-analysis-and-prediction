@@ -67,7 +67,7 @@ The final cleaning step is to create a healthy column, which contains True or Fa
 After all of my data cleaning, my dataset will look like the table below:
 
 ***Project Dataset Schema***
-(234429 rows × 25 columns)
+(217692 rows × 25 columns)
 
 | name | id | minutes | contributor_id | submitted | tags | n_steps | steps | description | ingredients | n_ingredients | user_id | recipe_id | date | rating | review | avg_rating | calories | total fat | sugar | sodium | protein | saturated fat | carbohydrates | healthy |
 |:-----|:---|:--------|:--------------|:----------|:-----|:--------|:------|:------------|:------------|:--------------|:--------|:----------|:-----|:-------|:-------|:-----------|:---------|:----------|:------|:-------|:--------|:--------------|:--------------|:---------|
@@ -126,7 +126,7 @@ on calories and whether or not the recipe is healthy.
 
 |                |       |
 |:---------------|------:|
-| name           |     1 |
+| name           |     0 |
 | id             |     0 |
 | minutes        |     0 |
 | contributor_id |     0 |
@@ -134,15 +134,15 @@ on calories and whether or not the recipe is healthy.
 | tags           |     0 |
 | n_steps        |     0 |
 | steps          |     0 |
-| description    |   114 |
+| description    |   112 |
 | ingredients    |     0 |
 | n_ingredients  |     0 |
 | user_id        |     1 |
 | recipe_id      |     1 |
 | date           |     1 |
-| rating         | 15036 |
-| review         |    58 |
-| avg_rating     |  2777 |
+| rating         | 13485 |
+| review         |    49 |
+| avg_rating     |  2446 |
 | calories       |     0 |
 | total fat      |     0 |
 | sugar          |     0 |
@@ -151,10 +151,10 @@ on calories and whether or not the recipe is healthy.
 | saturated fat  |     0 |
 | carbohydrates  |     0 |
 | healthy        |     0 |
-| missing_rating |     0 |
+
 
 ### NMAR Analysis
-The "rating" column has the most missing values, at 15036. I believe that the "rating" column is NMAR (Not Missing At Random). This can be attributed to the fact that
+The "rating" column has the most missing values, at 13485. I believe that the "rating" column is NMAR (Not Missing At Random). This can be attributed to the fact that
 people will usually only give recipes if they feel strongly about a recipe. They either really loved it and want to give it 5 stars, or they really hated it and want to
 give it 1 star. A majority of the people who look up recipes on food.com likely just want to find something to cook. They probably won't come back after eating to give
 their review of the recipe. I've done this many times, and I'm sure this is a common trend.
@@ -248,5 +248,5 @@ Null Hypothesis: The model’s RMSE is the same for healthy recipes as for unhea
 
 Alternative Hypothesis: The model’s RMSE is higher for healthy recipes than for unhealthy recipes. Any observed difference is not due to random chance.
 
-After running the permutation test, I got a p value of 0.069. This is greater than my significance level cutoff of 0.05, so I fail to reject the null hypothesis.
+After running the permutation test, I got a p value of 0.084. This is greater than my significance level cutoff of 0.05, so I fail to reject the null hypothesis.
 This means that there is not enough evidence to say that the model performs better for healthy recipes than unhealthy recipes.
