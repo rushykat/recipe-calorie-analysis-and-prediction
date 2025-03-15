@@ -99,21 +99,14 @@ The schema for those variables is:
   src="assets/univar1.html"
   width="800"
   height="600"
-  frameborder="0"
-  ></iframe>
-  
-This histogram shows the distribution of calories in the entire recipe dataset. The plot shows that most of the recipes in my dataset are within 0-500 calories.
-Then, there is a sharp taper off, until I reach 1000 calories, at which point there are very little recipes that have over 1000 calories.
+  frameborder="0"></iframe> This histogram shows the distribution of calories in the entire recipe dataset. The plot shows that most of the recipes in my dataset are within 0-500 calories. Then, there is a sharp taper off, until I reach 1000 calories, at which point there are very little recipes that have over 1000 calories.
 
 <iframe
   src="assets/univar2.html"
   width="800"
   height="600"
   frameborder="0"
-  ></iframe>
-  
-This histogram gives us the distribution of healthy and unhealthy recipes out of all the recipes in the dataset. The plot shows that a majority of the recipes are
-unhealthy.
+  ></iframe>This histogram gives us the distribution of healthy and unhealthy recipes out of all the recipes in the dataset. The plot shows that a majority of the recipes are unhealthy.
 
 ### Bivariate Analysis
 
@@ -122,20 +115,14 @@ unhealthy.
   width="800"
   height="600"
   frameborder="0"
-  ></iframe>
-  
-This boxplot shows the distribution of calories out of all recipes in the dataset based on the recipe category (healthy or unhealthy). By comparing the median values,
-I can see that this plot shows that healthy recipes are lower in calories than unhealthy recipes.
+  ></iframe> This boxplot shows the distribution of calories out of all recipes in the dataset based on the recipe category (healthy or unhealthy). By comparing the median values, I can see that this plot shows that healthy recipes are lower in calories than unhealthy recipes.
 
 <iframe
   src="assets/bivar2.html"
   width="800"
   height="600"
   frameborder="0"
-  ></iframe>
-  
-This scatterplot shows us the relationship betIen calories and total fat. The plot shows that calories and total fat have a strong, positive correlation. So, meals that
-are high in fats are also high in calories and vice versa.
+  ></iframe> This scatterplot shows us the relationship betIen calories and total fat. The plot shows that calories and total fat have a strong, positive correlation. So, meals that are high in fats are also high in calories and vice versa.
 
 ### Interesting Aggregates
 By grouping columns by the healthy column, I created this pivot table, which stores the mean value for each nutrition column based on the recipe
@@ -205,10 +192,7 @@ Results:
   width="800"
   height="600"
   frameborder="0"
-></iframe>
-
-After running the permutation test, I got a p value of 0.0. Since this is below our significance level of 0.05, I will reject the null hypothesis.
-This shows that the missingness of "rating" is dependent on the "avg_rating" column.
+></iframe> After running the permutation test, I got a p value of 0.0. Since this is below our significance level of 0.05, I will reject the null hypothesis. This shows that the missingness of "rating" is dependent on the "avg_rating" column.
 
 Second Permutation Test:
 
@@ -225,10 +209,7 @@ Results:
   width="800"
   height="600"
   frameborder="0"
-></iframe>
-
-After running the permutation test, I found a p value of 0.11. Since this p value is above our significance level of 0.05, I will fail to reject the null hypothesis.
-This shows that the missingness of "rating" is not dependent on the "minutes" column.
+></iframe> After running the permutation test, I found a p value of 0.11. Since this p value is above our significance level of 0.05, I will fail to reject the null hypothesis. This shows that the missingness of "rating" is not dependent on the "minutes" column.
 
 ## Hypothesis Testing
 I want to run a hypothesis test to answer the following question: Do healthy recipes have a lower average calorie count than unhealthy recipes? So, I ran a 
