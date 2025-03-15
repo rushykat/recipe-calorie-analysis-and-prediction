@@ -175,6 +175,14 @@ Alternative Hypothesis: The missingness of the "rating" column is dependent on t
 Test Statistic: Difference in means
 
 Results:
+
+<iframe
+  src="assets/missingdist1.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 After running the permutation test, I got a p value of 0.0. Since this is below our significance level of 0.05, I will reject the null hypothesis.
 This shows that the missingness of "rating" is dependent on the "avg_rating" column.
 
@@ -187,6 +195,14 @@ Alternative Hypothesis: The missingness of the "rating" column is dependent on t
 Test Statistic: Difference in means
 
 Results:
+
+<iframe
+  src="assets/missingdist2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 After running the permutation test, I found a p value of 0.11. Since this p value is above our significance level of 0.05, I will fail to reject the null hypothesis.
 This shows that the missingness of "rating" is not dependent on the "minutes" column.
 
